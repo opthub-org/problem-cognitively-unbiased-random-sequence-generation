@@ -218,13 +218,13 @@ def f15(seq):
     return hist.get(True, 0)
 
 
-def g(dim, seq):
-    # type: (int, str) -> float
+def g(dim, seq, pplb, ppub):
+    # type: (int, str, float, float) -> float
     """G_d: Chi-square of a d-dimentional sequence."""
     hist = histgram(seq, dim=dim, step=dim)
     df = 6**dim - 1
-    lb = chi2.ppf(0.1, df)
-    ub = chi2.ppf(0.9, df)
+    lb = chi2.ppf(pplb, df)
+    ub = chi2.ppf(ppub, df)
     p = chisq(hist, dim)
     return max(lb - p, p - ub, 0)
 
@@ -275,6 +275,8 @@ def print_json(dic, indent=None):
 @click.option("-x", "--variables", type=click.IntRange(1), default=50, help="Sequence length.")
 @click.option("-o", "--objectives", callback=json_list, default=[[i for i in range(1, 16)]], help="Objective functions.")
 @click.option("-s", "--constraints", callback=json_list, default=[i for i in range(1, 13)], help="Constraints.")
+@click.option("-l", "--lower-bounds", callback=json_list, default=[0.1]*12, help="Percent points for lower bounds.")
+@click.option("-u", "--upper-bounds", callback=json_list, default=[0.9]*12, help="Percent points for upper bounds.")
 @click.option("-a", "--bias_alpha", callback=json_list, default=[2, 2, 2, 2, 2, 27, 5, 0,  0, 1, 0, 0, 1, 0, 0], help="Alpha for cognitive bias.")
 @click.option("-b", "--bias_beta", callback=json_list, default=[5, 5, 5, 5, 5, 30, 8, 1,  0, 3, 0, 1, 2, 0, 0], help="Beta for cognitive bias.")
 @click.option("-g", "--bias_gamma", callback=json_list, default=[3, 3, 3, 3, 3,  1, 1, 3, 10, 4, 4, 4, 4, 4, 4], help="Gamma for cognitive bias.")
@@ -316,7 +318,7 @@ def main(ctx, **kwargs):
 
     print_json({
         'objective': [f(i, x) for i in kwargs['objectives']],
-        'constraint': [g(i, x) for i in kwargs['constraints']],
+        'constraint': [g(i, x, kwargs['lower_bounds'][i], kwargs['upper_bounds'][i]) for i in kwargs['constraints']],
         'error': None
     }, kwargs['pretty'])
 
