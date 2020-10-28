@@ -310,11 +310,11 @@ def main(ctx, **kwargs):
     x = kwargs['file'].read()
     length = len(x)
     if length != kwargs['variables']:
-        ctx.fail("Invalid input length: %d, but expected %d." % (length, kwargs['variables']))
+        raise Exception("Invalid input length: %d, but expected %d." % (length, kwargs['variables']))
     match = re.search("[^1-6]+", x)
     if match:
         i = match.start()
-        ctx.fail("Invalid input value: `%s` at x[%d]" % (x[i], i))
+        raise Exception("Invalid input value: `%s` at x[%d]" % (x[i], i))
 
     objs = [f(i, x) for i in kwargs['objectives']]
     cons = [g(d, x, kwargs['lower_bounds'][i], kwargs['upper_bounds'][i]) for i, d in enumerate(kwargs['constraints'])]
