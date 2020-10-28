@@ -17,7 +17,7 @@ $ ./rngbias.py < rand50.txt
 For convenience, a PRNG script is provided.
 ```
 $ ./rand.py 50 | ./rngbias.py
-{"objective": 1, "constraint": [1], "error": null}
+{"objective": 81.14285714285714, "constraint": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "error": null}
 ```
 
 For more details, see help.
