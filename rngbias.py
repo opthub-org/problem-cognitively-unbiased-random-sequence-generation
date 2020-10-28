@@ -317,10 +317,20 @@ def main(ctx, **kwargs):
         ctx.fail("Invalid input value: `%s` at x[%d]" % (x[i], i))
 
     objs = [f(i, x) for i in kwargs['objectives']]
+    if len(objs) == 0:
+        objs = None
+    elif len(objs) == 1:
+        objs = objs[0]
+
     cons = [g(i, x, kwargs['lower_bounds'][i], kwargs['upper_bounds'][i]) for i in kwargs['constraints']]
+    if len(cons) == 0:
+        cons = None
+    elif len(cons) == 1:
+        cons = cons[0]
+
     print_json({
-        'objective': None if len(objs) == 0 else objs[0] if len(objs) == 1 else objs,
-        'constraint': None if len(cons) == 0 else cons[0] if len(cons) == 1 else cons,
+        'objective': objs,
+        'constraint': cons,
         'error': None
     }, kwargs['pretty'])
 
