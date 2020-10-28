@@ -1,5 +1,4 @@
-FROM python:3.9-slim
-COPY . /usr/src/app
-WORKDIR /usr/src/app
+FROM clearlinux/numpy-mp
+COPY . /bench
 RUN pip install -r requirements.txt
-ENTRYPOINT ["./rngbias.py"]
+ENTRYPOINT ["docker-entrypoint.sh", "python3", "rngbias.py"]
