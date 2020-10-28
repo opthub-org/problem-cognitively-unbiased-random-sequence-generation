@@ -316,9 +316,11 @@ def main(ctx, **kwargs):
         i = match.start()
         ctx.fail("Invalid input value: `%s` at x[%d]" % (x[i], i))
 
+    objs = [f(i, x) for i in kwargs['objectives']]
+    cons = [g(i, x, kwargs['lower_bounds'][i], kwargs['upper_bounds'][i]) for i in kwargs['constraints']]
     print_json({
-        'objective': [f(i, x) for i in kwargs['objectives']],
-        'constraint': [g(i, x, kwargs['lower_bounds'][i], kwargs['upper_bounds'][i]) for i in kwargs['constraints']],
+        'objective': None if len(objs) == 0 else objs[0] if len(objs) == 1 else objs,
+        'constraint': None if len(cons) == 0 else cons[0] if len(cons) == 1 else cons,
         'error': None
     }, kwargs['pretty'])
 
