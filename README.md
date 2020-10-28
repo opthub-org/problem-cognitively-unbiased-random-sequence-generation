@@ -11,7 +11,7 @@ $ pip install -r requirements.txt
 ## Usage
 ```
 $ ./rngbias.py < rand50.txt
-{"objective": 1, "constraint": [1], "error": null}
+{"objective": 81.14285714285714, "constraint": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "error": null}
 ```
 
 For convenience, a PRNG script is provided.
@@ -26,7 +26,7 @@ $ ./rngbias.py --help
 ```
 
 ## Environmental Variables
-Via environmental variables, you can specify the number of variables (i.e., the length of random number sequence), the definition of objective functions, and the parameters of cognitive bias.
+Using environmental variables, you can specify the number of variables (i.e., the length of random number sequence), the definition of objective functions, and the parameters of cognitive bias.
 
 |Variable            |Default                                                |
 |--------------------|-------------------------------------------------------|
@@ -45,7 +45,7 @@ The objective functions can be configured through `RNGBIAS_OBJECTIVES`, which is
 - for M=5, `RNGBIAS_OBJECTIVES=[[1, 2, 3], [4, 5, 6], [7, 8, 9], [10, 11, 12], [13, 14, 15]]`;
 - for M=7, `RNGBIAS_OBJECTIVES=[[1, 2], [3, 4], [5, 6], [7, 8], [9, 10], [11, 12], [13, 14, 15]]`.
 
-The parameters of cognitive bias can be specified via `RNGBIAS_ALPHA`, `RNGBIAS_BETA`, and `RNGBIAS_GAMMA` environmental variables, each of which should be a numerical array of length 15, corresponding to the lower bound, the upper bound, and the penalty weight of features F1--F15. The default values are the values shown in Table 1 in [Temsiririrkkul et al. 2014, [EN](https://dspace.jaist.ac.jp/dspace/bitstream/10119/12995/1/21068.pdf), [JA](http://hdl.handle.net/10119/12991)]. Please note that the F14.
+The parameters of cognitive bias can be specified via `RNGBIAS_ALPHA`, `RNGBIAS_BETA`, and `RNGBIAS_GAMMA` environmental variables, each of which should be a numerical array of length 15, corresponding to the lower bound, the upper bound, and the penalty weight of features F1--F15. The default values are adopted from ([Temsiririrkkul et al. 2014, Table II](https://dspace.jaist.ac.jp/dspace/bitstream/10119/12995/1/21068.pdf)).
 
 ## Configuration File
 You can also specify environmental variables by a file. See `config.yml` for details.
