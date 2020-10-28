@@ -1,0 +1,48 @@
+## The number of variables (i.e., the length of a random number sequence)
+variables: 50
+
+## Which d are constrained for d-dimensional chi-squared values
+constraints: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+
+## Cognitive bias parameters
+bias_alpha: [2, 2, 2, 2, 2, 27, 5, 0,  0, 1, 0, 0, 1, 0, 0]
+bias_beta:  [5, 5, 5, 5, 5, 30, 8, 1,  0, 3, 0, 1, 2, 0, 0]
+bias_gamma: [3, 3, 3, 3, 3,  1, 1, 3, 10, 4, 4, 4, 4, 4, 4]
+
+
+###############################################################################
+# Uncomment one of the following settings
+###############################################################################
+
+## For EC-Comp 2020 Single-Objective Track
+objectives:
+- [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+
+## For EC-Comp 2020 Multi-Objective Track with M=2
+# objectives:
+# - [1, 2, 3, 4, 5, 6, 7]
+# - [8, 9, 10, 11, 12, 13, 14, 15]
+
+## For EC-Comp 2020 Multi-Objective Track with M=3
+# objectives:
+# - [1, 2, 3, 4, 5]
+# - [6, 7, 8, 9, 10]
+# - [11, 12, 13, 14, 15]
+
+## For EC-Comp 2020 Multi-Objective Track with M=5
+# objective:
+# - [1, 2, 3]
+# - [4, 5, 6]
+# - [7, 8, 9]
+# - [10, 11, 12]
+# - [13, 14, 15]
+
+## For EC-Comp 2020 Multi-Objective Track with M=7
+# objective:
+# - [1, 2]
+# - [3, 4]
+# - [5, 6]
+# - [7, 8]
+# - [9, 10]
+# - [11, 12]
+# - [13, 14, 15]
