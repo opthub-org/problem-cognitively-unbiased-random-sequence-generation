@@ -10,24 +10,24 @@ $ pip install -r requirements.txt
 
 ## Usage
 ```
-$ ./rngbias.py < rand50.txt
+$ python rngbias.py < rand50.txt
 {"objective": 81.14285714285714, "constraint": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "error": null}
 ```
 
 See help for detailed usage.
 ```
-$ ./rngbias.py --help
+$ python rngbias.py --help
 ```
 
 For convenience, a random number generator is provided.
 ```
-$ ./rand.py | ./rngbias.py
+$ python rand.py | python rngbias.py
 {"objective": 81.14285714285714, "constraint": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "error": null}
 ```
 
 See help for detailed usage.
 ```
-$ ./rand.py --help
+$ python rand.py --help
 ```
 
 ## Environmental Variables
