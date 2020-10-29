@@ -33,16 +33,16 @@ $ ./rand.py --help
 ## Environmental Variables
 Using environmental variables, you can specify the number of variables (i.e., the length of random number sequence), the definition of objective functions, and the parameters of cognitive bias.
 
-|Variable              |Default                                                |
-|----------------------|-------------------------------------------------------|
-|`RNGBIAS_VARIABLES`   |`50`                                                   |
-|`RNGBIAS_OBJECTIVES`  |`[[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]]`|
-|`RNGBIAS_CONSTRAINTS` |`[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]`              |
-|`RNGBIAS_LOWER_BOUNDS`|`[.1, .1, .1, .1, .1, .1, .1, .1, .1, .1, .1, .1]`     |
-|`RNGBIAS_UPPER_BOUNDS`|`[.9, .9, .9, .9, .9, .9, .9, .9, .9, .9, .9, .9]`     |
-|`RNGBIAS_BIAS_ALPHA`  |`[2, 2, 2, 2, 2, 27, 5, 0,  0, 1, 0, 0, 1, 0, 0]`      |
-|`RNGBIAS_BIAS_BETA`   |`[5, 5, 5, 5, 5, 30, 8, 1,  0, 3, 0, 1, 2, 0, 0]`      |
-|`RNGBIAS_BIAS_GAMMA`  |`[3, 3, 3, 3, 3,  1, 1, 3, 10, 4, 4, 4, 4, 4, 4]`      |
+|Variable              |Default                                                       |
+|----------------------|--------------------------------------------------------------|
+|`RNGBIAS_VARIABLES`   |`50`                                                          |
+|`RNGBIAS_OBJECTIVES`  |`[[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]]`       |
+|`RNGBIAS_CONSTRAINTS` |`[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]`                     |
+|`RNGBIAS_LOWER_BOUNDS`|`[0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1]`|
+|`RNGBIAS_UPPER_BOUNDS`|`[0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9]`|
+|`RNGBIAS_BIAS_ALPHA`  |`[2, 2, 2, 2, 2, 27, 5, 0,  0, 1, 0, 0, 1, 0, 0]`             |
+|`RNGBIAS_BIAS_BETA`   |`[5, 5, 5, 5, 5, 30, 8, 1,  0, 3, 0, 1, 2, 0, 0]`             |
+|`RNGBIAS_BIAS_GAMMA`  |`[3, 3, 3, 3, 3,  1, 1, 3, 10, 4, 4, 4, 4, 4, 4]`             |
 
 The objective functions can be configured through `RNGBIAS_OBJECTIVES`, which is a 2D array of indices of cognitive features F1--F15 where each 1D array in the 2D array represents an objective function as a sum of specified features. The default value defines a single objective function that sums all the 15 features, which is the setting of EC-Comp 2020 Single-Objective Track. You may change it to the setting of EC-Comp 2020 Multi-Objective Track as follows:
 - for M=2, `RNGBIAS_OBJECTIVES=[[1, 2, 3, 4, 5, 6, 7], [8, 9, 10, 11, 12, 13, 14, 15]]`;
