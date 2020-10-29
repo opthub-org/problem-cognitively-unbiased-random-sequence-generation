@@ -334,7 +334,7 @@ def main(ctx, **kwargs):
 
 if __name__ == "__main__":
     try:
-        main(auto_envvar_prefix="RNGBIAS")  # pylint: disable=no-value-for-parameter
+        main(auto_envvar_prefix="RNGBIAS")   # pylint: disable=no-value-for-parameter,unexpected-keyword-arg
     except Exception as e:
         print_json({
             'objective': None,
