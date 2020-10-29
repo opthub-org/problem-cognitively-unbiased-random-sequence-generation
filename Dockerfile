@@ -1,4 +1,4 @@
-FROM clearlinux/numpy-mp
+FROM clearlinux/numpy-mp:latest
 COPY . /bench
 RUN pip install -r requirements.txt
-ENTRYPOINT ["docker-entrypoint.sh", "python3", "rngbias.py"]
+ENTRYPOINT ["docker-entrypoint.sh", "./rngbias.py"]
