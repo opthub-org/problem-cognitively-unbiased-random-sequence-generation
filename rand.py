@@ -30,4 +30,4 @@ def main(seqlen, choices, weights):
 
 
 if __name__ == "__main__":
-    main(auto_envvar_prefix="RAND")  # pylint: disable=no-value-for-parameter
+    main(auto_envvar_prefix="RAND")  # pylint: disable=no-value-for-parameter,unexpected-keyword-arg

@@ -2,14 +2,27 @@
 import json
 import logging
 import os
-import re
 import sys
 
 import click
+from jsonschema import validate, ValidationError
 from scipy.stats import chi2
 import yaml
 
 _logger = logging.getLogger(__name__)
+
+variable_jsonschema_template = """{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "A random number sequence to evaluate bias",
+  "type": "string",
+  "minLength": %d,
+  "maxLength": %d,
+  "pattern": "^[1-6]*$"
+}"""
+
+
+def variable_jsonschema(dim):
+    return json.loads(variable_jsonschema_template % (dim, dim))
 
 
 def chisq(hist, dim):
@@ -308,13 +321,7 @@ def main(ctx, **kwargs):
         return sum(errs[i](x) for i in ixs)
 
     x = kwargs['file'].readline()
-    length = len(x)
-    if length != kwargs['variables']:
-        raise Exception("Invalid input length: %d, but expected %d." % (length, kwargs['variables']))
-    match = re.search("[^1-6]+", x)
-    if match:
-        i = match.start()
-        raise Exception("Invalid input value: `%s` at x[%d]" % (x[i], i))
+    validate(x, variable_jsonschema(kwargs['variables']))
 
     objs = [f(i, x) for i in kwargs['objectives']]
     cons = [g(d, x, kwargs['lower_bounds'][i], kwargs['upper_bounds'][i]) for i, d in enumerate(kwargs['constraints'])]
@@ -327,7 +334,7 @@ def main(ctx, **kwargs):
 
 if __name__ == "__main__":
     try:
-        main(auto_envvar_prefix="RNGBIAS")  # pylint: disable=no-value-for-parameter
+        main(auto_envvar_prefix="RNGBIAS")   # pylint: disable=no-value-for-parameter,unexpected-keyword-arg
     except Exception as e:
         print_json({
             'objective': None,
