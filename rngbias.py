@@ -307,7 +307,7 @@ def main(ctx, **kwargs):
     def f(ixs, x):
         return sum(errs[i](x) for i in ixs)
 
-    x = kwargs['file'].read()
+    x = kwargs['file'].readline()
     length = len(x)
     if length != kwargs['variables']:
         raise Exception("Invalid input length: %d, but expected %d." % (length, kwargs['variables']))
