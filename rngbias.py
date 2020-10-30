@@ -320,7 +320,7 @@ def main(ctx, **kwargs):
     def f(ixs, x):
         return sum(errs[i](x) for i in ixs)
 
-    x = kwargs['file'].readline()
+    x = kwargs['file'].readline().rstrip()
     validate(x, variable_jsonschema(kwargs['variables']))
 
     objs = [f(i, x) for i in kwargs['objectives']]
