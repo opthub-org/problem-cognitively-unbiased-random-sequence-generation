@@ -19,14 +19,14 @@ def json_list(ctx, param, value):
     return value
 
 
-@click.command(help="Generate a random number sequence.")
+@click.command(help="Generate a random number string.")
 @click.option("-n", "--seqlen", type=click.IntRange(1), default=50, help="Sequence length.")
 @click.option("-c", "--choices", callback=json_list, default=[1, 2, 3, 4, 5, 6], help="Choices.")
 @click.option("-w", "--weights", callback=json_list, default=None, help="Weights for choices (default to uniform).")
 @click.version_option("1.0.0")
 def main(seqlen, choices, weights):
     choices = [str(c) for c in choices]
-    print("".join(random.choices(choices, weights=weights, k=seqlen)))
+    print('"' + "".join(random.choices(choices, weights=weights, k=seqlen)) + '"')
 
 
 if __name__ == "__main__":
