@@ -10,7 +10,7 @@ $ pip install -r requirements.txt
 
 ## Usage
 ```
-$ python rngbias.py < rand50.txt
+$ python rngbias.py < rand50.json
 {"objective": 81.14285714285714, "constraint": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "error": null}
 ```
 
