@@ -336,7 +336,9 @@ def main(ctx, **kwargs):
 
 if __name__ == "__main__":
     try:
+        _logger.info('Start')
         main(auto_envvar_prefix="RNGBIAS")   # pylint: disable=no-value-for-parameter,unexpected-keyword-arg
+        _logger.info('Successfully finished')
     except Exception as e:
         _logger.error(format_exc())
         print_json({
