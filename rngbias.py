@@ -3,6 +3,7 @@ import json
 import logging
 import os
 import sys
+from traceback import format_exc
 
 import click
 from jsonschema import validate, ValidationError
@@ -337,6 +338,7 @@ if __name__ == "__main__":
     try:
         main(auto_envvar_prefix="RNGBIAS")   # pylint: disable=no-value-for-parameter,unexpected-keyword-arg
     except Exception as e:
+        _logger.error(format_exc())
         print_json({
             'objective': None,
             'constraint': None,
