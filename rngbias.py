@@ -42,7 +42,7 @@ def histgram(seq, begin=0, end=100, dim=1, step=1, pattern=lambda x: x):
     """Count the occurence of patterns in a given sequence."""
     count = {}
     length = len(seq)
-    for i in range(length * begin // 100, length * end // 100 - dim, step):
+    for i in range(length * begin // 100, length * end // 100 - dim + 1, step):
         p = pattern(seq[i : i + dim])
         if p in count:
             count[p] += 1
@@ -300,7 +300,7 @@ def print_json(dic, indent=None):
 @click.option('-c', '--config', is_eager=True,
               type=click.Path(dir_okay=False), default='config.yml',
               callback=load_config, help='Configuration file.')
-@click.version_option("1.0.0")
+@click.version_option("1.1.0")
 @click.pass_context
 def main(ctx, **kwargs):
     verbosity = 10 * (kwargs['quiet'] - kwargs['verbose'])
